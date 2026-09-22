@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.onebx.ebx</groupId>
-        <artifactId>manufacturing</artifactId>
+        <artifactId>ebx-manufacturing</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>manufacturing-lib</artifactId>
+    <artifactId>ebx-manufacturing-lib</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
