@@ -33,10 +33,7 @@
         <finalName>ebx-manufacturing</finalName>
         <resources>
             <resource>
-                <directory>../data</directory>
-                <includes>
-                    <include>Perspective menu.xml</include>
-                </includes>
+                <directory>src/main/resources</directory>
             </resource>
         </resources>
     </build>

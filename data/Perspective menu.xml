@@ -10447,37 +10447,6 @@
             </icon>
         </menuItem>
         <menuItem>
-            <id>3169</id>
-            <type>action</type>
-            <label>
-                <localizedDocumentations>
-                    <locale>en_US</locale>
-                </localizedDocumentations>
-                <localizedDocumentations>
-                    <locale>fr_FR</locale>
-                </localizedDocumentations>
-            </label>
-            <parent>3006</parent>
-            <order>4000</order>
-            <hasTopSeparator>true</hasTopSeparator>
-            <icon>
-                <type>url</type>
-                <reference>/ebx-fasttrack-mcp-server-web/www/common/images/icons/mcp-server-stroke-rounded.svg</reference>
-            </icon>
-            <action>
-                <type>S</type>
-                <serviceKey>ebx-mcp-server@McpServerDashboard</serviceKey>
-                <serviceParameters>
-                    <name>service</name>
-                    <value>ebx-mcp-server@McpServerDashboard</value>
-                </serviceParameters>
-                <serviceParameters>
-                    <name>branch</name>
-                    <value>MCP</value>
-                </serviceParameters>
-            </action>
-        </menuItem>
-        <menuItem>
             <id>3201</id>
             <type>action</type>
             <label>

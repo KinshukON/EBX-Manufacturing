@@ -1,6 +1,7 @@
 package com.onebx.ebx.fasttrack.manufacturing.service;
 
 import com.orchestranetworks.service.ServiceKey;
+import com.onebx.ebx.fasttrack.manufacturing.ModuleNames;
 import com.orchestranetworks.ui.selection.DatasetEntitySelection;
 import com.orchestranetworks.userservice.UserService;
 import com.orchestranetworks.schema.types.dataspace.DataspaceSet;
@@ -11,7 +12,7 @@ import com.orchestranetworks.userservice.declaration.WebComponentDeclarationCont
 
 public class DemoDataSeederDeclaration implements UserServiceDeclaration.OnDataset {
 
-    public static final ServiceKey SERVICE_KEY = ServiceKey.forModuleServiceName("EBX Manufacturing Module", "MfgDemoDataSeeder");
+    public static final ServiceKey SERVICE_KEY = ServiceKey.forModuleServiceName(ModuleNames.MANUFACTURING, "MfgDemoDataSeeder");
 
     @Override
     public ServiceKey getServiceKey() {

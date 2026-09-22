@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Curated from data/Perspective_menu_correct.xml. Source-environment services and
+     published views are intentionally excluded; every action targets a provisioned dataset. -->
+<x:root xmlns:x="urn:ebx-schemas:cfx_1.0">
+  <domain>
+    <menuItem><id>3000</id><type>section</type><label><localizedDocumentations><locale>en_US</locale><label>Master Data</label></localizedDocumentations></label><order>0</order></menuItem>
+    <menuItem><id>3001</id><type>section</type><label><localizedDocumentations><locale>en_US</locale><label>Reference Data</label></localizedDocumentations></label><order>1</order></menuItem>
+    <menuItem><id>3002</id><type>section</type><label><localizedDocumentations><locale>en_US</locale><label>Commercial Sources</label></localizedDocumentations></label><order>2</order></menuItem>
+    <menuItem><id>3003</id><type>section</type><label><localizedDocumentations><locale>en_US</locale><label>Mapping and Lineage</label></localizedDocumentations></label><order>3</order></menuItem>
+    <menuItem>
+      <id>3046</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Supplier Master</label></localizedDocumentations></label>
+      <parent>3000</parent><order>0</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/supplier_master.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>BMfgSupplierManagement</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>MfgSupplierManagement</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/Supplier</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3053</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Customer Master</label></localizedDocumentations></label>
+      <parent>3000</parent><order>1</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/customer_master.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>BMfgCustomerManagement</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>MfgCustomerManagement</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/Customer</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3060</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Material Master</label></localizedDocumentations></label>
+      <parent>3000</parent><order>2</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/material_master.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>BMfgMaterialManagement</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>MfgMaterialManagement</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/Material</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3061</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Plants and Facilities</label></localizedDocumentations></label>
+      <parent>3000</parent><order>3</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/plants_facilities.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>BMfgSitePlantManagement</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>MfgSitePlantManagement</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/Site</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3207</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Supplier Reference Data</label></localizedDocumentations></label>
+      <parent>3001</parent><order>4</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/reference_data.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>BMfgSupplierReference</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>MfgSupplierReference</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/RefSupplierType</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3211</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Countries</label></localizedDocumentations></label>
+      <parent>3001</parent><order>5</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/countries.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>Geographies</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>Geographies</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/Country</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3168</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Units of Measure</label></localizedDocumentations></label>
+      <parent>3001</parent><order>6</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/units_of_measure.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>UOM</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>UOM</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/UOM</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3301</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>SAP Business Partners</label></localizedDocumentations></label>
+      <parent>3002</parent><order>7</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/sap_commercial_sources.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>SapBusinessPartnerSource</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>SapBusinessPartnerSource</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/SapBusinessPartner</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3302</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>SAP Suppliers</label></localizedDocumentations></label>
+      <parent>3002</parent><order>8</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/suppliers_procurement.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>SapSupplierSource</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>SapSupplierSource</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/SapSupplier</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3303</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Salesforce Customers</label></localizedDocumentations></label>
+      <parent>3002</parent><order>9</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/customers_commercial.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>SalesforceCustomerSource</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>SalesforceCustomerSource</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/SfAccount</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3401</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Source Mapping</label></localizedDocumentations></label>
+      <parent>3003</parent><order>10</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/source_mapping_lineage.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>CommercialSourceMapping</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>CommercialSourceMapping</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/SourceToCanonicalDatasetMapping</value></serviceParameters>
+      </action>
+    </menuItem>
+    <menuItem>
+      <id>3402</id><type>action</type><label><localizedDocumentations><locale>en_US</locale><label>Record Lineage</label></localizedDocumentations></label>
+      <parent>3003</parent><order>11</order>
+      <icon><type>url</type><reference>/ebx-manufacturing/www/common/images/icons/svg/manufacturing/source_mapping_lineage.svg</reference></icon>
+      <action><type>S</type><serviceKey>ebx-root-1.0@default</serviceKey>
+        <serviceParameters><name>service</name><value>@default</value></serviceParameters>
+        <serviceParameters><name>branch</name><value>CommercialSourceMapping</value></serviceParameters>
+        <serviceParameters><name>instance</name><value>CommercialSourceMapping</value></serviceParameters>
+        <serviceParameters><name>xpath</name><value>/root/SourceToCanonicalRecordMapping</value></serviceParameters>
+      </action>
+    </menuItem>
+  </domain>
+</x:root>

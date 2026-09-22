@@ -17,7 +17,7 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ebx.version>6.2.0</ebx.version>
+        <ebx.version>6.3.0.1-DEV-SNAPSHOT</ebx.version>
         <ebx.lib.dir>${env.EBX_LIB_DIR}</ebx.lib.dir>
         <jakarta.servlet.version>5.0.0</jakarta.servlet.version>
     </properties>

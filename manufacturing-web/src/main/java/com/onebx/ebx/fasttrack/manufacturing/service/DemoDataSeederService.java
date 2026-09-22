@@ -1,5 +1,7 @@
 package com.onebx.ebx.fasttrack.manufacturing.service;
 
+import com.onebx.ebx.fasttrack.manufacturing.ModuleNames;
+import com.onebx.ebx.fasttrack.manufacturing.ManufacturingPerspectiveInstaller;
 import com.onwbp.adaptation.Adaptation;
 import com.onwbp.adaptation.AdaptationHome;
 import com.onwbp.adaptation.AdaptationTable;
@@ -13,8 +15,6 @@ import com.orchestranetworks.service.*;
 import com.orchestranetworks.ui.selection.DatasetEntitySelection;
 import com.orchestranetworks.userservice.*;
 
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.Date;
 
 public class DemoDataSeederService implements UserService<DatasetEntitySelection> {
@@ -37,6 +37,13 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
         { "SapCustomerSource", "SapCustomerSource", "sources/SapCustomerSource.xsd", "SAP Customer Source" },
         { "SapReferenceSource", "SapReferenceSource", "sources/SapReferenceSource.xsd", "SAP Reference Source" },
         { "SapSupplierSource", "SapSupplierSource", "sources/SapSupplierSource.xsd", "SAP Supplier Source" },
+
+        { "SapMaterialSource", "SapMaterialSource", "sources/SapMaterialSource.xsd", "SAP Material Source" },
+        { "BMfgProductReference", "MfgProductReference", "MfgProductReference.xsd", "Product Reference" },
+        { "BMfgProductManagement", "MfgProductManagement", "MfgProductManagement.xsd", "Product Management" },
+        { "BMfgProductVariantReference", "MfgProductVariantReference", "MfgProductVariantReference.xsd", "Product Variant Reference" },
+        { "BMfgProductVariantManagement", "MfgProductVariantManagement", "MfgProductVariantManagement.xsd", "Product Variant Management" },
+        { "BMfgWorkOrderReference", "MfgWorkOrderReference", "MfgWorkOrderReference.xsd", "Work Order Reference" },
 
         // Salesforce CRM
         { "SalesforceCustomerSource", "SalesforceCustomerSource", "sources/SalesforceCustomerSource.xsd", "Salesforce Customer Source" },
@@ -79,7 +86,6 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
 
         // Canonical MDG models relevant to Supplier, Advertiser, Material, and Plant
         { "BMfgSupplierManagement", "MfgSupplierManagement", "MfgSupplierManagement.xsd", "Manufacturing Supplier Management" },
-        { "BMfgSupplierManagement", "PaidSocialEcosystem", "PaidSocialEcosystem.xsd", "Paid Social Ecosystem" },
         { "BMfgSupplierReference", "MfgSupplierReference", "MfgSupplierReference.xsd", "Manufacturing Supplier Reference" },
         { "BMfgCustomerManagement", "MfgCustomerManagement", "MfgCustomerManagement.xsd", "Manufacturing Customer Management" },
         { "BMfgCustomerReference", "MfgCustomerReference", "MfgCustomerReference.xsd", "Manufacturing Customer Reference" },
@@ -163,18 +169,32 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
 
     private void executeSeed(Repository repo, Session session) throws OperationException {
         StringBuilder log = new StringBuilder();
+        provision(repo, session, log);
+        seedReferenceData(repo, session, log);
+        seedLog = log.toString();
+    }
 
-        // 1. Clean up old root-level staging dataspaces if they exist directly under Reference
-        cleanupUnwantedRootDataspaces(repo, session, log);
+    /** Creates structure only; startup never inserts demo records. */
+    public void provision(Repository repo, Session session, StringBuilder log) throws OperationException {
 
-        // 2. Ensure CommonReferenceData exists (from reference data module)
-        ensureDataspaceAndDataset(repo, "CommonReferenceData", "CommonReferenceData",
-            "urn:ebx:module:EBX Reference Data Module:/WEB-INF/ebx/schemas/CommonReferenceData.xsd",
-            "Common Reference Data", session, log);
+        for (String foundation : new String[] { "CommonReferenceData", "Geographies", "UOM" }) {
+            AdaptationHome foundationHome = repo.lookupHome(HomeKey.forBranchName(foundation));
+            if (foundationHome == null || foundationHome.findAdaptationOrNull(
+                    com.onwbp.adaptation.AdaptationName.forName(foundation)) == null) {
+                throw OperationException.createError("Reference Data foundation is not ready: " + foundation);
+            }
+        }
+
+        // Resolve every foreign-key dataspace before the first schema is compiled.
+        ensureDataspace(repo, "BMfgCommercialSourceManagement", "Commercial Source Management", null, session, log);
+        for (String[] definition : SCHEMAS) {
+            ensureDataspace(repo, definition[0], definition[3],
+                definition[2].startsWith("sources/") ? "BMfgCommercialSourceManagement" : null, session, log);
+        }
 
         // Ensure Commercial Source Management Parent Dataspace exists under Reference
         ensureDataspaceAndDataset(repo, "BMfgCommercialSourceManagement", "CommercialSourceManagement",
-            "urn:ebx:module:EBX Manufacturing Module:/WEB-INF/ebx/schemas/sources/CommercialSourceMapping.xsd",
+            ModuleNames.schema(ModuleNames.MANUFACTURING, "sources/CommercialSourceMapping.xsd"),
             "Commercial Source Management", null, session, log);
 
         // 2. Ensure all Manufacturing dataspaces & datasets exist (fail-safe)
@@ -183,24 +203,25 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
             String datasetName = schemaInfo[1];
             String schemaPath = schemaInfo[2];
             String label = schemaInfo[3];
-            String schemaLocStr = "urn:ebx:module:EBX Manufacturing Module:/WEB-INF/ebx/schemas/" + schemaPath;
+            String schemaLocStr = ModuleNames.schema(ModuleNames.MANUFACTURING, schemaPath);
 
             String parentBranch = null;
             if (schemaPath.startsWith("sources/")) {
                 parentBranch = "BMfgCommercialSourceManagement";
             }
 
-            try {
-                ensureDataspaceAndDataset(repo, branchName, datasetName, schemaLocStr, label, parentBranch, session, log);
-            } catch (Exception e) {
-                log.append("Skipped/Warning on ").append(branchName).append(": ").append(e.getMessage()).append("\n");
-            }
+            ensureDataspaceAndDataset(repo, branchName, datasetName, schemaLocStr, label, parentBranch, session, log);
         }
 
-        // 3. Seed Reference/Customizing tables
-        seedReferenceData(repo, session, log);
+        // Earlier deployments may have cached errors while FK homes were missing.
+        // EBX requires model refresh outside a Procedure; all writes above are committed.
+        repo.refreshSchemas(true);
+        for (String[] definition : SCHEMAS) {
+            Adaptation dataset = repo.lookupHome(HomeKey.forBranchName(definition[0]))
+                .findAdaptationOrNull(com.onwbp.adaptation.AdaptationName.forName(definition[1]));
+            dataset.getSchemaNode(); // Fails bootstrap if the model remains unavailable.
+        }
 
-        seedLog = log.toString();
     }
 
     public void autoSeed(Repository repo, Session session) throws OperationException {
@@ -215,34 +236,7 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
 
     private void ensureDataspaceAndDataset(Repository repo, String branchName, String datasetName,
             String schemaLocStr, String label, String parentBranchName, Session session, StringBuilder log) throws OperationException {
-        if (branchName != null && branchName.length() > 32) {
-            log.append("Skipped dataspace '").append(branchName).append("' (exceeds EBX 32 char limit)\n");
-            return;
-        }
-        HomeKey key = HomeKey.forBranchName(branchName);
-        AdaptationHome home = repo.lookupHome(key);
-        if (home == null) {
-            HomeCreationSpec spec = new HomeCreationSpec();
-            spec.setKey(key);
-            spec.setLabel(com.onwbp.base.text.UserMessage.createInfo(label));
-            spec.setOwner(Profile.ADMINISTRATOR);
-            
-            AdaptationHome parentHome = null;
-            if (parentBranchName != null) {
-                parentHome = repo.lookupHome(HomeKey.forBranchName(parentBranchName));
-            }
-            if (parentHome != null) {
-                spec.setParent(parentHome);
-                spec.setHomeToCopyPermissionsFrom(parentHome);
-            } else {
-                spec.setParent(repo.getReferenceBranch());
-                spec.setHomeToCopyPermissionsFrom(repo.getReferenceBranch());
-            }
-            home = repo.createHome(spec, session);
-            log.append("Created dataspace: ").append(branchName).append("\n");
-        } else {
-            log.append("Verified dataspace: ").append(branchName).append(" (already exists)\n");
-        }
+        AdaptationHome home = ensureDataspace(repo, branchName, label, parentBranchName, session, log);
 
         SchemaLocation schemaLoc = SchemaLocation.parse(schemaLocStr);
         com.onwbp.adaptation.AdaptationReference datasetRef = com.onwbp.adaptation.AdaptationReference.forPersistentName(datasetName);
@@ -250,24 +244,9 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
         if (dataset != null) {
             String existingSchemaLoc = dataset.getSchemaLocation().format();
             if (!existingSchemaLoc.equals(schemaLocStr)) {
-                log.append("Schema location mismatch for dataset ").append(datasetName)
-                   .append(". Existing: ").append(existingSchemaLoc)
-                   .append(", Expected: ").append(schemaLocStr)
-                   .append(". Deleting and recreating dataset...\n");
-                ProgrammaticService service = ProgrammaticService.createForSession(session, home);
-                final com.onwbp.adaptation.AdaptationReference finalRef = datasetRef;
-                ProcedureResult pr = service.execute(new Procedure() {
-                    @Override
-                    public void execute(ProcedureContext context) throws Exception {
-                        context.setAllPrivileges(true);
-                        context.doDelete(finalRef, true);
-                    }
-                });
-                if (pr.hasFailed()) {
-                    log.append("Failed to delete dataset: ").append(pr.getException().getMessage()).append("\n");
-                } else {
-                    dataset = null;
-                }
+                throw OperationException.createError("Dataset " + branchName + "/" + datasetName
+                    + " uses " + existingSchemaLoc + "; expected " + schemaLocStr
+                    + ". Existing data was preserved. Migrate the schema before retrying.");
             }
         }
 
@@ -291,28 +270,36 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
         }
     }
 
-    private void cleanupUnwantedRootDataspaces(Repository repo, Session session, StringBuilder log) {
-        log.append("Starting cleanup of old root-level staging dataspaces...\n");
-        for (String[] schemaInfo : SCHEMAS) {
-            String branchName = schemaInfo[0];
-            String schemaPath = schemaInfo[2];
-            if (schemaPath.startsWith("sources/")) {
-                HomeKey key = HomeKey.forBranchName(branchName);
-                AdaptationHome home = repo.lookupHome(key);
-                if (home != null) {
-                    AdaptationHome parent = home.getParentBranch();
-                    if (parent != null && parent.getKey().equals(repo.getReferenceBranch().getKey())) {
-                        try {
-                            log.append("Closing and deleting root-level staging dataspace: ").append(branchName).append("\n");
-                            repo.closeHome(home, session);
-                            repo.deleteHome(home, session);
-                        } catch (Exception e) {
-                            log.append("Error deleting root-level dataspace ").append(branchName).append(": ").append(e.getMessage()).append("\n");
-                        }
-                    }
-                }
-            }
+    private AdaptationHome ensureDataspace(Repository repo, String branchName, String label,
+            String parentBranchName, Session session, StringBuilder log) throws OperationException {
+        if (branchName != null && branchName.length() > 32) {
+            throw OperationException.createError("Dataspace exceeds EBX 32 character limit: " + branchName);
         }
+        HomeKey key = HomeKey.forBranchName(branchName);
+        AdaptationHome home = repo.lookupHome(key);
+        if (home == null) {
+            HomeCreationSpec spec = new HomeCreationSpec();
+            spec.setKey(key);
+            spec.setLabel(com.onwbp.base.text.UserMessage.createInfo(label));
+            spec.setOwner(Profile.ADMINISTRATOR);
+            AdaptationHome parentHome = null;
+            if (parentBranchName != null) {
+                parentHome = repo.lookupHome(HomeKey.forBranchName(parentBranchName));
+            }
+            if (parentHome != null) {
+                spec.setParent(parentHome);
+                spec.setHomeToCopyPermissionsFrom(parentHome);
+            } else {
+                spec.setParent(repo.getReferenceBranch());
+                spec.setHomeToCopyPermissionsFrom(repo.getReferenceBranch());
+            }
+            home = repo.createHome(spec, session);
+            log.append("Created dataspace: ").append(branchName).append("\n");
+        } else {
+            log.append("Verified dataspace: ").append(branchName).append(" (already exists)\n");
+        }
+
+        return home;
     }
 
     private Adaptation findDataset(Repository repo, String branchName, String datasetName) {
@@ -1060,85 +1047,8 @@ public class DemoDataSeederService implements UserService<DatasetEntitySelection
     }
 
     private void seedPerspectiveData(Repository repo, Session session, StringBuilder log) {
-        try {
-            AdaptationHome managerBranch = repo.lookupHome(HomeKey.forBranchName("ebx-manager"));
-            if (managerBranch == null) return;
-            Adaptation mfgPerspectiveDs = managerBranch.findAdaptationOrNull(com.onwbp.adaptation.AdaptationName.forName("Manufacturing"));
-            if (mfgPerspectiveDs == null) {
-                mfgPerspectiveDs = managerBranch.findAdaptationOrNull(com.onwbp.adaptation.AdaptationName.forName("ebx-perspective-manufacturing"));
-            }
-            if (mfgPerspectiveDs == null) {
-                mfgPerspectiveDs = managerBranch.findAdaptationOrNull(com.onwbp.adaptation.AdaptationName.forName("ebx-perspective-manufacturing-01"));
-            }
-            if (mfgPerspectiveDs == null) {
-                log.append("Could not find manufacturing perspective dataset.\n");
-                return;
-            }
-
-            // Programmatically import the customized Perspective menu XML packaged with the module.
-            try (InputStream xmlStream = DemoDataSeederService.class.getResourceAsStream("/Perspective menu.xml")) {
-                if (xmlStream == null) {
-                    log.append("Perspective XML classpath resource was not found.\n");
-                    return;
-                }
-                java.nio.file.Path temporaryXml = Files.createTempFile("manufacturing-perspective-", ".xml");
-                Files.copy(xmlStream, temporaryXml, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                temporaryXml.toFile().deleteOnExit();
-                final java.io.File f = temporaryXml.toFile();
-                final Adaptation targetDs = mfgPerspectiveDs;
-                ProgrammaticService service = ProgrammaticService.createForSession(session, managerBranch);
-                ProcedureResult pr = service.execute(new Procedure() {
-                    @Override
-                    public void execute(ProcedureContext context) throws Exception {
-                        context.setAllPrivileges(true);
-                        com.orchestranetworks.service.ImportSpec spec = new com.orchestranetworks.service.ImportSpec();
-                        spec.setSourceFile(f);
-                        spec.setTargetAdaptationTable(targetDs.getTable(Path.parse("/domain/menuItem")));
-                        spec.setImportMode(com.orchestranetworks.service.ImportSpecMode.UPDATE_OR_INSERT);
-                        context.doImport(spec);
-                    }
-                });
-                if (pr.hasFailed()) {
-                    log.append("Perspective XML import failed: ").append(pr.getException().getMessage()).append("\n");
-                } else {
-                    log.append("Successfully imported perspective menu items from Perspective menu.xml\n");
-                }
-            }
-
-            // Seed additional perspective menu items
-            Object[][] menuItems = {
-                {"3201", "3043", "Supplier Hierarchy", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierHierarchy", ""},
-                {"3202", "3043", "Global Supplier View", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierHierarchy", "media_mdm_global_supplier"},
-                {"3203", "3043", "EMEA Supplier View", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierHierarchy", "media_mdm_emea_supplier"},
-                {"3204", "3043", "LATAM Supplier View", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierHierarchy", "media_mdm_latam_supplier"},
-                {"3205", "3043", "Paid Social Taxonomy", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierHierarchy", "media_mdm_paid_social"},
-                {"3206", "3043", "Supplier Identifiers", "BMfgSupplierManagement", "MfgSupplierManagement", "/root/SupplierIdentifier", ""},
-                {"3207", "3043", "Supplier Reference Data", "BMfgSupplierReference", "MfgSupplierReference", "/root/RefSupplierType", ""},
-                {"3208", "3052", "Customer Hierarchy", "BMfgCustomerManagement", "MfgCustomerManagement", "/root/CustomerHierarchy", ""},
-                {"3209", "3052", "Customer Identifiers", "BMfgCustomerManagement", "MfgCustomerManagement", "/root/CustomerIdentifier", ""},
-                {"3210", "3052", "Customer Reference Data", "BMfgCustomerReference", "MfgCustomerReference", "/root/RefCustomerType", ""},
-                {"3211", "304", "Countries (ISO 3166-1)", "CommonReferenceData", "Geography", "/root/Country", ""},
-                {"3212", "304", "Business Regions", "CommonReferenceData", "Geography", "/root/BusinessRegion", ""},
-                {"3213", "776", "Source System Registry", "CommonReferenceData", "CommonReferenceData", "/root/SourceSystem", ""},
-                {"3214", "776", "GLEIF LEI Registry", "CommonReferenceData", "GLEIF", "/root/GleifGoldenCopy", ""},
-                {"3215", "18", "Supplier MAME Policy Configuration", "ebx-addon-mame", "ebx-addon-mame-configuration", "/root/TableConfiguration", ""}
-            };
-
-            for (Object[] item : menuItems) {
-                final Object[] itemData = item;
-                createRecordIfAbsent(session, mfgPerspectiveDs, "/domain/menuItem", (String) item[0], new RecordPopulator() {
-                    @Override
-                    public void populate(ValueContextForUpdate vc) {
-                        vc.setValue(itemData[0], Path.parse("./id"));
-                        vc.setValue("action", Path.parse("./type"));
-                        vc.setValue(itemData[1], Path.parse("./parent"));
-                        vc.setValue(Boolean.TRUE, Path.parse("./hasTopSeparator"));
-                    }
-                }, log);
-            }
-        } catch (Exception e) {
-            log.append("Perspective menu seeding note: ").append(e.getMessage()).append("\n");
-        }
+        ManufacturingPerspectiveInstaller.install(repo, session, LoggingCategory.getKernel());
+        log.append("Manufacturing perspective installation requested.\n");
     }
 
     private void createRecordIfAbsent(Session session, Adaptation dataset, String tablePathStr, String primaryKeyStr, final RecordPopulator populator, StringBuilder log) throws OperationException {
