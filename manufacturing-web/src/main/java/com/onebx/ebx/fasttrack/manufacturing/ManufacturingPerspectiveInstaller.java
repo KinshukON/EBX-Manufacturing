@@ -83,6 +83,7 @@ public final class ManufacturingPerspectiveInstaller {
         }
         if (home.findAdaptationOrNull(AdaptationName.forName(KEY)) != null) {
             if (!repairStagingTargets(home, session, log)) return false;
+            if (!ensureSourceHierarchy(home, session, log)) return false;
             log.info("[manufacturing] perspective " + KEY + " already present, left unchanged");
             return true;
         }
@@ -124,6 +125,57 @@ public final class ManufacturingPerspectiveInstaller {
             }
         } catch (final Exception ex) {
             log.error("[manufacturing] perspective installation failed", ex);
+            return false;
+        }
+        return true;
+    }
+
+    /** Adds the source perspective's business-domain groups without overwriting administrator edits. */
+    private static boolean ensureSourceHierarchy(final AdaptationHome home, final Session session,
+        final LoggingCategory log) {
+        final Adaptation perspective = home.findAdaptationOrNull(AdaptationName.forName(KEY));
+        final String[][] groups = {
+            {"3100", "Materials & Products", "3000", "10"},
+            {"3101", "Plants & Facilities", "3000", "20"},
+            {"3102", "Bill of Materials & Routing", "3000", "30"},
+            {"3103", "Inventory & Warehousing", "3000", "40"},
+            {"3104", "Quality & Compliance", "3000", "50"},
+            {"3105", "Maintenance & Service", "3000", "60"},
+            {"3106", "Logistics & Supply Chain", "3000", "70"},
+            {"3107", "Customers & Commercial", "3000", "80"},
+            {"3108", "Suppliers & Procurement", "3000", "90"}
+        };
+        final ProcedureResult result = ProgrammaticService.createForSession(session, home).execute(context -> {
+            context.setAllPrivileges(true);
+            final com.onwbp.adaptation.AdaptationTable menu = perspective.getTable(Path.parse("/domain/menuItem"));
+            for (String[] group : groups) {
+                if (menu.lookupAdaptationByPrimaryKey(com.onwbp.adaptation.PrimaryKey.parseString(group[0])) != null) continue;
+                final ValueContextForUpdate row = context.getContextForNewOccurrence(menu);
+                row.setValue("group", Path.parse("type"));
+                row.setValue(group[2], Path.parse("parent"));
+                row.setValue(Integer.valueOf(group[3]), Path.parse("order"));
+                row.setValue(Boolean.FALSE, Path.parse("hasTopSeparator"));
+                final com.orchestranetworks.schema.SchemaNode docs = row.getNode(Path.parse("label/localizedDocumentations"));
+                final Object doc = docs.createNewOccurrence();
+                docs.getNode(Path.parse("locale")).executeWrite("en_US", doc);
+                docs.getNode(Path.parse("label")).executeWrite(group[1], doc);
+                java.util.List<Object> labels = new java.util.ArrayList<Object>(); labels.add(doc);
+                row.setValue(labels, Path.parse("label/localizedDocumentations"));
+                context.doCreateOccurrence(row, menu);
+            }
+            final String[][] moves = {{"3046", "3108"}, {"3053", "3107"}, {"3060", "3100"}, {"3061", "3101"}};
+            for (String[] move : moves) {
+                final Adaptation item = menu.lookupAdaptationByPrimaryKey(com.onwbp.adaptation.PrimaryKey.parseString(move[0]));
+                if (item == null) continue;
+                final ValueContextForUpdate row = context.getContext(item.getAdaptationName());
+                if (!move[1].equals(item.get(Path.parse("parent")))) {
+                    row.setValue(move[1], Path.parse("parent"));
+                    context.doModifyContent(item, row);
+                }
+            }
+        });
+        if (result.hasFailed()) {
+            log.error("[manufacturing] source hierarchy repair failed: " + result.getExceptionFullMessage(Locale.ENGLISH));
             return false;
         }
         return true;
