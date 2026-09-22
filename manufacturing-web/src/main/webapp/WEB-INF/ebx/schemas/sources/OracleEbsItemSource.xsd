@@ -1,0 +1,2451 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--XML schema generated for EBX(R) instance [reference=OracleEbsItemSource] on Tue Jul 21 09:00:00 EDT 2026 by user [admin].-->
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+    <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
+    <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
+    <xs:annotation>
+        <xs:appinfo>
+            <osd:validation/>
+            <osd:inheritance>
+                <dataSetInheritance>all</dataSetInheritance>
+            </osd:inheritance>
+            <ebxbnd:binding targetDirectory="../../manufacturing-lib/src/main/java">
+                <javaPathConstants typeName="com.onebx.ebx.fasttrack.manufacturing.path.OracleEbsItemSourcePaths">
+                    <nodes root="/root" prefix="" relativeToRoot="false"/>
+                </javaPathConstants>
+            </ebxbnd:binding>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="root" osd:access="--">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element name="EbsItem" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Item Staging</osd:label>
+                            <osd:description>MTL_SYSTEM_ITEMS_B (master org row).</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Item Staging</osd:label>
+                            <osd:description>MTL_SYSTEM_ITEMS_B (master org row).</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/itemId </primaryKeys>
+                                <defaultLabel>${./itemId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="itemId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="itemNumber" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Number</osd:label>
+                                        <osd:description>SEGMENT1 concatenated item.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Number</osd:label>
+                                        <osd:description>SEGMENT1 concatenated item.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="itemSourceId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Source ID</osd:label>
+                                        <osd:description>INVENTORY_ITEM_ID.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Source ID</osd:label>
+                                        <osd:description>INVENTORY_ITEM_ID.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="masterOrganization" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Master Organization</osd:label>
+                                        <osd:description>Master inventory org link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Master Organization</osd:label>
+                                        <osd:description>Master inventory org link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsInventoryOrg</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Description</osd:label>
+                                        <osd:description>Item short description.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Description</osd:label>
+                                        <osd:description>Item short description.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="longDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Long Description</osd:label>
+                                        <osd:description>Item long description.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Long Description</osd:label>
+                                        <osd:description>Item long description.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="primaryUom" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Primary UOM</osd:label>
+                                        <osd:description>Primary UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Primary UOM</osd:label>
+                                        <osd:description>Primary UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsUnitOfMeasure</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="itemType" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Type</osd:label>
+                                        <osd:description>Item type link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Type</osd:label>
+                                        <osd:description>Item type link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsItemType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="itemStatus" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Status</osd:label>
+                                        <osd:description>Item status link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Status</osd:label>
+                                        <osd:description>Item status link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsItemStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inventoryItemFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inventory Item Flag</osd:label>
+                                        <osd:description>Inventory item flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inventory Item Flag</osd:label>
+                                        <osd:description>Inventory item flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="purchasableFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Purchasable Flag</osd:label>
+                                        <osd:description>Purchasable flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Purchasable Flag</osd:label>
+                                        <osd:description>Purchasable flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerOrderableFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Orderable Flag</osd:label>
+                                        <osd:description>Customer orderable flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Customer Orderable Flag</osd:label>
+                                        <osd:description>Customer orderable flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="internalOrderableFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Internal Orderable Flag</osd:label>
+                                        <osd:description>Internal orderable flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Internal Orderable Flag</osd:label>
+                                        <osd:description>Internal orderable flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="stockableFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Stockable Flag</osd:label>
+                                        <osd:description>Stockable flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Stockable Flag</osd:label>
+                                        <osd:description>Stockable flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="bomEnabledFlag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>BOM Enabled Flag</osd:label>
+                                        <osd:description>BOM enabled flag.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>BOM Enabled Flag</osd:label>
+                                        <osd:description>BOM enabled flag.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="unitWeight" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Unit Weight</osd:label>
+                                        <osd:description>Unit weight.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Unit Weight</osd:label>
+                                        <osd:description>Unit weight.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="weightUom" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Weight UOM</osd:label>
+                                        <osd:description>Weight UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Weight UOM</osd:label>
+                                        <osd:description>Weight UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsUnitOfMeasure</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="unitVolume" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Unit Volume</osd:label>
+                                        <osd:description>Unit volume.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Unit Volume</osd:label>
+                                        <osd:description>Unit volume.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="volumeUom" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Volume UOM</osd:label>
+                                        <osd:description>Volume UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Volume UOM</osd:label>
+                                        <osd:description>Volume UOM link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsUnitOfMeasure</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="listPricePerUnit" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>List Price Per Unit</osd:label>
+                                        <osd:description>List price per unit.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>List Price Per Unit</osd:label>
+                                        <osd:description>List price per unit.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceClient" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceTableName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordCompositeKey" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceLoadBatchId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceBatch</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceCreatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceChangedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceLoadStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mappingStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceMappingStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalDataset" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalTable" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalRecordId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="recordHash" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rawPayloadReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validFrom" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isCurrent" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EbsItemOrgAssignment" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Item Organization Assignments</osd:label>
+                            <osd:description>Per-inventory-org enabled item attributes.</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Item Organization Assignments</osd:label>
+                            <osd:description>Per-inventory-org enabled item attributes.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/itemOrgAssignmentId </primaryKeys>
+                                <defaultLabel>${./itemOrgAssignmentId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="itemOrgAssignmentId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Org Assignment Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Org Assignment Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="item" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/EbsItem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inventoryOrg" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inventory Org</osd:label>
+                                        <osd:description>Inventory organization link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inventory Org</osd:label>
+                                        <osd:description>Inventory organization link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsInventoryOrg</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="itemStatus" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Status</osd:label>
+                                        <osd:description>Item status in org.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Status</osd:label>
+                                        <osd:description>Item status in org.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsItemStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="makeBuyCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Make Buy Code</osd:label>
+                                        <osd:description>Make or buy code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Make Buy Code</osd:label>
+                                        <osd:description>Make or buy code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="plannerCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Planner Code</osd:label>
+                                        <osd:description>Planner code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Planner Code</osd:label>
+                                        <osd:description>Planner code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="leadTimeWeeks" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Lead Time Weeks</osd:label>
+                                        <osd:description>Lead time in weeks.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Lead Time Weeks</osd:label>
+                                        <osd:description>Lead time in weeks.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="minMinmaxQuantity" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Min Minmax Quantity</osd:label>
+                                        <osd:description>Min-max minimum quantity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Min Minmax Quantity</osd:label>
+                                        <osd:description>Min-max minimum quantity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="maxMinmaxQuantity" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Max Minmax Quantity</osd:label>
+                                        <osd:description>Min-max maximum quantity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Max Minmax Quantity</osd:label>
+                                        <osd:description>Min-max maximum quantity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceClient" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceTableName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordCompositeKey" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceLoadBatchId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceBatch</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceCreatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceChangedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceLoadStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mappingStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceMappingStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalDataset" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalTable" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalRecordId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="recordHash" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rawPayloadReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validFrom" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isCurrent" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EbsItemCategoryAssignment" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Item Category Assignments</osd:label>
+                            <osd:description>MTL_ITEM_CATEGORIES.</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Item Category Assignments</osd:label>
+                            <osd:description>MTL_ITEM_CATEGORIES.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/itemCategoryAssignmentId </primaryKeys>
+                                <defaultLabel>${./itemCategoryAssignmentId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="itemCategoryAssignmentId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Category Assignment Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Category Assignment Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="item" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/EbsItem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="categorySet" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Category Set</osd:label>
+                                        <osd:description>Category set link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Category Set</osd:label>
+                                        <osd:description>Category set link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsCategorySet</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="categoryCode" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Category Code</osd:label>
+                                        <osd:description>Category code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Category Code</osd:label>
+                                        <osd:description>Category code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="categoryName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Category Name</osd:label>
+                                        <osd:description>Category name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Category Name</osd:label>
+                                        <osd:description>Category name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceClient" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceTableName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordCompositeKey" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceLoadBatchId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceBatch</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceCreatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceChangedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceLoadStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mappingStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceMappingStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalDataset" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalTable" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalRecordId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="recordHash" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rawPayloadReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validFrom" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isCurrent" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EbsItemRevision" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Item Revisions</osd:label>
+                            <osd:description>MTL_ITEM_REVISIONS.</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Item Revisions</osd:label>
+                            <osd:description>MTL_ITEM_REVISIONS.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/itemRevisionId </primaryKeys>
+                                <defaultLabel>${./itemRevisionId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="itemRevisionId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Revision Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Revision Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="item" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/EbsItem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="revisionCode" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Revision</osd:label>
+                                        <osd:description>Revision code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Revision</osd:label>
+                                        <osd:description>Revision code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="revisionLabel" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Revision Label</osd:label>
+                                        <osd:description>Revision label.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Revision Label</osd:label>
+                                        <osd:description>Revision label.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="effectivityDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Effectivity Date</osd:label>
+                                        <osd:description>Effectivity date.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Effectivity Date</osd:label>
+                                        <osd:description>Effectivity date.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="implementationDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Implementation Date</osd:label>
+                                        <osd:description>Implementation date.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Implementation Date</osd:label>
+                                        <osd:description>Implementation date.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="revisionReason" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Revision Reason</osd:label>
+                                        <osd:description>Revision reason.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Revision Reason</osd:label>
+                                        <osd:description>Revision reason.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceClient" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceTableName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordCompositeKey" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceLoadBatchId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceBatch</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceCreatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceChangedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceLoadStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mappingStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceMappingStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalDataset" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalTable" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalRecordId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="recordHash" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rawPayloadReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validFrom" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isCurrent" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EbsItemCrossReference" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Item Cross References</osd:label>
+                            <osd:description>MTL_CROSS_REFERENCES.</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Item Cross References</osd:label>
+                            <osd:description>MTL_CROSS_REFERENCES.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/itemCrossReferenceId </primaryKeys>
+                                <defaultLabel>${./itemCrossReferenceId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="itemCrossReferenceId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cross Reference Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Cross Reference Staging ID</osd:label>
+                                        <osd:description>Surrogate staging identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="item" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Item Link</osd:label>
+                                        <osd:description>Item link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/EbsItem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="crossReferenceType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cross Reference Type</osd:label>
+                                        <osd:description>Cross reference type link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Cross Reference Type</osd:label>
+                                        <osd:description>Cross reference type link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>OracleEbsReferenceSource</container>
+                                                <branch>OracleEbsReferenceSource</branch>
+                                                <tablePath>/root/EbsCrossReferenceType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="crossReferenceValue" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cross Reference Value</osd:label>
+                                        <osd:description>Cross reference value.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Cross Reference Value</osd:label>
+                                        <osd:description>Cross reference value.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Description</osd:label>
+                                        <osd:description>Cross reference description.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Description</osd:label>
+                                        <osd:description>Cross reference description.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceClient" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Client</osd:label>
+                                        <osd:description>Oracle EBS database instance name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceTableName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Table Name</osd:label>
+                                        <osd:description>Physical source table/object name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Record ID</osd:label>
+                                        <osd:description>Unique staging record primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceRecordCompositeKey" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Composite Key</osd:label>
+                                        <osd:description>Composite natural key inside source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceLoadBatchId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Load Batch ID</osd:label>
+                                        <osd:description>Ingestion execution batch reference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceBatch</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceCreatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Created Date</osd:label>
+                                        <osd:description>Timestamp of creation in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceChangedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Source Changed Date</osd:label>
+                                        <osd:description>Timestamp of last change in source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Date</osd:label>
+                                        <osd:description>Timestamp of load into EBX staging.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="inboundLoadStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Inbound Load Status</osd:label>
+                                        <osd:description>Load validation status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceLoadStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mappingStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Mapping Status</osd:label>
+                                        <osd:description>Mapping alignment status.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>MfgCommercialSourceReference</container>
+                                                <branch>BMfgCommercialSourceReference</branch>
+                                                <tablePath>/root/CommercialSourceMappingStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalDataset" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Dataset</osd:label>
+                                        <osd:description>Target master dataset name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalTable" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Table</osd:label>
+                                        <osd:description>Target master table name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="canonicalRecordId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canonical Record ID</osd:label>
+                                        <osd:description>Resolved canonical primary key.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="recordHash" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Record Hash</osd:label>
+                                        <osd:description>SHA-256 hash representing record values.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="rawPayloadReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Raw Payload Reference</osd:label>
+                                        <osd:description>Document path to raw payload dump.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Notes</osd:label>
+                                        <osd:description>Open staging or diagnostic notes.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created By</osd:label>
+                                        <osd:description>Record creator username.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Created Date</osd:label>
+                                        <osd:description>Audit timestamp of creation.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated By</osd:label>
+                                        <osd:description>Username of last modifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Last Updated Date</osd:label>
+                                        <osd:description>Audit timestamp of last update.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validFrom" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid From</osd:label>
+                                        <osd:description>Start date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valid To</osd:label>
+                                        <osd:description>Expiration date of record validity.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isCurrent" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Is Current</osd:label>
+                                        <osd:description>Active current revision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

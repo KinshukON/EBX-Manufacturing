@@ -1,0 +1,1798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+    <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
+    <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
+    <xs:annotation>
+        <xs:appinfo>
+            <osd:validation/>
+            <osd:inheritance>
+                <dataSetInheritance>all</dataSetInheritance>
+            </osd:inheritance>
+            <ebxbnd:binding targetDirectory="../manufacturing-lib/src/main/java">
+                <javaPathConstants typeName="com.onebx.ebx.fasttrack.manufacturing.path.MfgCustomerManagementPaths">
+                    <nodes root="/root" prefix="" relativeToRoot="false"/>
+                </javaPathConstants>
+            </ebxbnd:binding>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="root" osd:access="--">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Customer Table -->
+                <xs:element name="Customer" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customers</osd:label>
+                            <osd:description>Customers</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Clients</osd:label>
+                            <osd:description>Clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerId </primaryKeys>
+                                <defaultLabel>${./customerId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for Customer.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour Customer.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Type</osd:label>
+                                        <osd:description>Customer Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type de client</osd:label>
+                                        <osd:description>Type de client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerStatus" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Status</osd:label>
+                                        <osd:description>Customer Status</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Statut du client</osd:label>
+                                        <osd:description>Statut du client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerStatus</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Name</osd:label>
+                                        <osd:description>Mastered business display name of the customer.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="legalName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Legal Name</osd:label>
+                                        <osd:description>Official registered corporate legal entity name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="tradeName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Trade Name</osd:label>
+                                        <osd:description>Commercial trading name or DBA alias.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="legacyName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Legacy / Alias Name</osd:label>
+                                        <osd:description>Prior corporate name or legacy vendor alias.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerSubtype" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Entity Subtype</osd:label>
+                                        <osd:description>Subtype (CORPORATE_GROUP, LEGAL_ENTITY, BRAND, PLATFORM, ADVERTISER).</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerSubtype</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="taxIdentifier" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Tax Identifier</osd:label>
+                                        <osd:description>Official corporate tax registration number.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dunsNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>DUNS Number</osd:label>
+                                        <osd:description>Dun &amp; Bradstreet D-U-N-S business identifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="countryCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Country Code</osd:label>
+                                        <osd:description>ISO 3166-1 alpha-2 country code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>Geographies</container>
+                                                <branch>Geographies</branch>
+                                                <tablePath>/root/Country</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="regionCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Region</osd:label>
+                                        <osd:description>Geographic business region code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>Geographies</container>
+                                                <branch>Geographies</branch>
+                                                <tablePath>/root/BusinessRegion</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="isAdvertiser" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Is Advertiser</osd:label>
+                                        <osd:description>Flag indicating if entity operates digital/social ad spaces.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="businessDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Business Description</osd:label>
+                                        <osd:description>Governed enterprise business overview.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="websiteUrl" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Website URL</osd:label>
+                                        <osd:description>Official corporate website URL.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="industrySector" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Industry Sector</osd:label>
+                                        <osd:description>Industry or business classification sector.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="primaryAddressId" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Primary Address</osd:label>
+                                        <osd:description>Foreign key reference to primary address.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/CustomerAddress</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="customerLifecycleStatus" type="xs:string" minOccurs="0" maxOccurs="1" default="APPROVED">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Lifecycle Status</osd:label>
+                                        <osd:description>Governance lifecycle state.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="onboardingStatus" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Onboarding Status</osd:label>
+                                        <osd:description>Status of initial client qualification.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="strategicAccount" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Strategic Account</osd:label>
+                                        <osd:description>Flag designating high-priority strategic relationship.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="riskTier" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Risk Tier</osd:label>
+                                        <osd:description>Evaluated customer risk tier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="complianceStatus" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Compliance Status</osd:label>
+                                        <osd:description>Overall regulatory compliance status.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dataQualityScore" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Data Quality Score</osd:label>
+                                        <osd:description>Calculated data quality score.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="onboardingDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="activationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="deactivationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="deactivationReason" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="accountOwner" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="dataSteward" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="aiEnrichmentStatus" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="aiConfidenceScore" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="aiEnrichmentSummary" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="aiEvidenceSources" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="lastEnrichedAt" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="demoDataFlag" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="demoProfile" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="provenanceSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="provenanceAsOfDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="CustomerIdentifier" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Identifiers</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/CustomerIdentifier/customerId</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CustomerAddress" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Addresses</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/CustomerAddress/customerId</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CustomerContact" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Contacts</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/CustomerContact/customerId</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CustomerHierarchy" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Hierarchies</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/CustomerHierarchy/parentCustomerId</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CustomerRole" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer Roles</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/CustomerRole/customerId</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerIdentifier Table -->
+                <xs:element name="CustomerIdentifier" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Identifiers</osd:label>
+                            <osd:description>Customer Identifiers</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Identifiants des clients</osd:label>
+                            <osd:description>Identifiants des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerIdentifierId </primaryKeys>
+                                <defaultLabel>${./customerIdentifierId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerIdentifierId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerIdentifier.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerIdentifier.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="identifierType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Identifier Type</osd:label>
+                                        <osd:description>Identifier Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type d'identifiant</osd:label>
+                                        <osd:description>Type d'identifiant</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/IdentifierType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Value</osd:label>
+                                        <osd:description>Value</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Valeur</osd:label>
+                                        <osd:description>Valeur</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerAddress Table -->
+                <xs:element name="CustomerAddress" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Addresses</osd:label>
+                            <osd:description>Customer Addresses</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Adresses des clients</osd:label>
+                            <osd:description>Adresses des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerAddressId </primaryKeys>
+                                <defaultLabel>${./customerAddressId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerAddressId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerAddress.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerAddress.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="addressType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Address Type</osd:label>
+                                        <osd:description>Address Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type d'adresse</osd:label>
+                                        <osd:description>Type d'adresse</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/AddressType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="addressLine1" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Address Line 1</osd:label>
+                                        <osd:description>Street address line 1.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="addressLine2" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Address Line 2</osd:label>
+                                        <osd:description>Suite, unit, or building number.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="city" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>City</osd:label>
+                                        <osd:description>City or municipality name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="stateProvince" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>State / Province</osd:label>
+                                        <osd:description>State, province, or region code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="postalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Postal Code</osd:label>
+                                        <osd:description>ZIP code or postal code.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="countryCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Country</osd:label>
+                                        <osd:description>ISO 3166-1 alpha-2 country code.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>Geographies</container>
+                                                <branch>Geographies</branch>
+                                                <tablePath>/root/Country</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="county" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>County</osd:label>
+                                        <osd:description>County or district name.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="latitude" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Latitude</osd:label>
+                                        <osd:description>Geographic latitude coordinate.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="longitude" type="xs:decimal" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Longitude</osd:label>
+                                        <osd:description>Geographic longitude coordinate.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="mapWidget" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <osd:uiBean class="com.onebx.ebx.fasttrack.manufacturing.ui.LeafletMapUIBean">
+                                            <latitudeField>./latitude</latitudeField>
+                                            <longitudeField>./longitude</longitudeField>
+                                            <addressLine1Field>./addressLine1</addressLine1Field>
+                                            <cityField>./city</cityField>
+                                            <stateProvinceField>./stateProvince</stateProvinceField>
+                                            <postalCodeField>./postalCode</postalCodeField>
+                                            <defaultZoom>14</defaultZoom>
+                                            <mapHeight>380px</mapHeight>
+                                        </osd:uiBean>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="geoAccuracy" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Geo Accuracy</osd:label>
+                                        <osd:description>Geocoding precision indicator.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="addressValidationStatus" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Validation Status</osd:label>
+                                        <osd:description>Address verification status.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="primaryAddress" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Primary Address Flag</osd:label>
+                                        <osd:description>Flag indicating if this record is designated as the primary address.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="effectiveStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="effectiveEndDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerContact Table -->
+                <xs:element name="CustomerContact" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Contacts</osd:label>
+                            <osd:description>Customer Contacts</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Contacts des clients</osd:label>
+                            <osd:description>Contacts des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerContactId </primaryKeys>
+                                <defaultLabel>${./customerContactId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerContactId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerContact.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerContact.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="contactType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Contact Type</osd:label>
+                                        <osd:description>Contact Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type de contact</osd:label>
+                                        <osd:description>Type de contact</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/ContactType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="contactName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Contact Name</osd:label>
+                                        <osd:description>Contact Name</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Nom du contact</osd:label>
+                                        <osd:description>Nom du contact</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerHierarchy Table -->
+                <xs:element name="CustomerHierarchy" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Hierarchies</osd:label>
+                            <osd:description>Customer Hierarchies</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Hiérarchies des clients</osd:label>
+                            <osd:description>Hiérarchies des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerHierarchyId </primaryKeys>
+                                <defaultLabel>${./customerHierarchyId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerHierarchyId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerHierarchy.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerHierarchy.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="parentCustomerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Parent Customer</osd:label>
+                                        <osd:description>Parent Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client parent</osd:label>
+                                        <osd:description>Client parent</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="childCustomerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Child Customer</osd:label>
+                                        <osd:description>Child Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client enfant</osd:label>
+                                        <osd:description>Client enfant</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="hierarchyType" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Hierarchy Type</osd:label>
+                                        <osd:description>Hierarchy Type link.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerHierarchyType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="effectiveStartDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="effectiveEndDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerRole Table -->
+                <xs:element name="CustomerRole" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Roles</osd:label>
+                            <osd:description>Customer Roles</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Rôles des clients</osd:label>
+                            <osd:description>Rôles des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerRoleId </primaryKeys>
+                                <defaultLabel>${./customerRoleId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerRoleId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerRole.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerRole.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="roleType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Role Type</osd:label>
+                                        <osd:description>Role Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type de rôle</osd:label>
+                                        <osd:description>Type de rôle</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerRoleType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerMaterial Table -->
+                <xs:element name="CustomerMaterial" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Materials</osd:label>
+                            <osd:description>Customer Materials</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Matériaux des clients</osd:label>
+                            <osd:description>Matériaux des clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerMaterialId </primaryKeys>
+                                <defaultLabel>${./customerMaterialId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerMaterialId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerMaterial.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerMaterial.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="materialId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Material</osd:label>
+                                        <osd:description>Material</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Matériel</osd:label>
+                                        <osd:description>Matériel</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgMaterialManagement</branch>
+
+                                                <container>MfgMaterialManagement</container>
+                                                <tablePath>/root/Material</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerMaterialRequirement Table -->
+                <xs:element name="CustomerMaterialRequirement" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Material Requirements</osd:label>
+                            <osd:description>Customer Material Requirements</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Exigences de matériel client</osd:label>
+                            <osd:description>Exigences de matériel client</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerMaterialRequirementId </primaryKeys>
+                                <defaultLabel>${./customerMaterialRequirementId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerMaterialRequirementId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerMaterialRequirement.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerMaterialRequirement.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="requirementType" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Requirement Type</osd:label>
+                                        <osd:description>Requirement Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Type d'exigence</osd:label>
+                                        <osd:description>Type d'exigence</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefCustomerRequirementType</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerMarketAssignment Table -->
+                <xs:element name="CustomerMarketAssignment" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Market Assignments</osd:label>
+                            <osd:description>Customer Market Assignments</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Affectations de marché client</osd:label>
+                            <osd:description>Affectations de marché client</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerMarketAssignmentId </primaryKeys>
+                                <defaultLabel>${./customerMarketAssignmentId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerMarketAssignmentId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerMarketAssignment.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerMarketAssignment.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="salesChannel" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sales Channel</osd:label>
+                                        <osd:description>Sales Channel</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Canal de vente</osd:label>
+                                        <osd:description>Canal de vente</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>BMfgCustomerReference</branch>
+
+                                                <container>MfgCustomerReference</container>
+                                                <tablePath>/root/RefSalesChannel</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerContractReference Table -->
+                <xs:element name="CustomerContractReference" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Contract References</osd:label>
+                            <osd:description>Customer Contract References</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Références de contrat client</osd:label>
+                            <osd:description>Références de contrat client</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerContractReferenceId </primaryKeys>
+                                <defaultLabel>${./customerContractReferenceId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerContractReferenceId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerContractReference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerContractReference.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="contractNumber" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Contract Number</osd:label>
+                                        <osd:description>Contract Number</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Numéro de contrat</osd:label>
+                                        <osd:description>Numéro de contrat</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerSourceReference Table -->
+                <xs:element name="CustomerSourceReference" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Source References</osd:label>
+                            <osd:description>Customer Source References</osd:description>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="fr-FR">
+                            <osd:label>Références sources clients</osd:label>
+                            <osd:description>Références sources clients</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerSourceReferenceId </primaryKeys>
+                                <defaultLabel>${./customerSourceReferenceId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerSourceReferenceId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerSourceReference.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Clé primaire pour CustomerSourceReference.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Client</osd:label>
+                                        <osd:description>Client</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystemName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System Name</osd:label>
+                                        <osd:description>Source System Name</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Nom du système source</osd:label>
+                                        <osd:description>Nom du système source</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Système source</osd:label>
+                                        <osd:description>Le système d'origine.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                    <xs:documentation xml:lang="fr-FR">
+                                        <osd:label>Code externe</osd:label>
+                                        <osd:description>Le code dans le système source.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- CustomerSourceCrossReference Table -->
+                <xs:element name="CustomerSourceCrossReference" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Customer Source Cross References</osd:label>
+                            <osd:description>Lineage tracking mapping for Customer master records.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/customerSourceReferenceId </primaryKeys>
+                                <defaultLabel>${./customerSourceReferenceId}</defaultLabel>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customerSourceReferenceId" minOccurs="1" maxOccurs="1" osd:trim="onUserInput">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                        <osd:description>Primary Key for CustomerSourceCrossReference.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="customerId" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Customer</osd:label>
+                                        <osd:description>Customer Reference</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Customer</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sourceSystem" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Source System</osd:label>
+                                        <osd:description>The origin system of this record.</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>CommonReferenceData</branch>
+                                                <container>CommonReferenceData</container>
+                                                <tablePath>/root/SourceSystem</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="externalCode" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>External Code</osd:label>
+                                        <osd:description>The mapped code in the source system.</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
